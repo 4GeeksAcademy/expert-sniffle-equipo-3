@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Catálogo completo de NORTE. Ropa y calzado esencial diseñados para durar.">
+    <title>Catálogo | NORTE</title>
+
+    <!-- Preconexión a Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuración personalizada de Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"DM Sans"', 'sans-serif'],
+                        display: ['"Manrope"', 'sans-serif'],
+                    },
+                    colors: {
+                        ink: '#17201b',
+                        muted: '#677068',
+                        paper: '#f4f2ec',
+                        line: '#d8d8d0',
+                        accent: '#c64f32',
+                        forest: '#344b3d',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Schema.org: Datos estructurados para SEO (Rúbrica) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Catálogo de Productos - NORTE",
+      "description": "Explora nuestra colección esencial de prendas y calzado.",
+      "url": "https://norte.com/catalogo.html",
+      "hasPart": [
+        {
+          "@type": "Product",
+          "name": "Chaqueta Atlas",
+          "category": "Abrigos",
+          "offers": {
+            "@type": "Offer",
+            "price": "189.00",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+          }
+        }
+      ]
+    }
+    </script>
+</head>
+<body class="bg-paper text-ink font-sans flex flex-col min-h-screen">
+
+    <!-- NAVBAR (Reutilizable) -->
+    <header class="bg-white border-b border-line sticky top-0 z-50">
+        <div class="max-w-[1440px] mx-auto px-6 h-[78px] flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 group" aria-label="Norte, inicio">
+                <img src="https://i.pinimg.com/736x/d4/46/74/d446745f86fd4e5a0615e644c9e0e90b.jpg" alt="Logo Norte" class="w-16 h-16 object-contain transition-transform group-hover:scale-105">
+                <span class="font-display text-xl font-bold tracking-tight">NORTE</span>
+            </a>
+            
+            <div class="hidden md:block flex-1 max-w-md mx-8">
+                <label for="search" class="sr-only">Buscar productos</label>
+                <input id="search" type="search" placeholder="Buscar en la colección..." 
+                       class="w-full border border-line bg-paper px-4 py-2 text-sm focus:outline-none focus:border-forest transition-colors">
+            </div>
+
+            <div class="flex items-center gap-6 text-sm font-medium">
+                <a href="#" class="hidden sm:block hover:text-muted transition-colors">Mi Cuenta</a>
+                <a href="carrito.html" class="flex items-center hover:text-muted transition-colors" aria-label="Abrir carrito">
+                    Bolsa 
+                    <span id="bag-count" class="ml-2 bg-ink text-white w-6 h-6 flex items-center justify-center rounded-full text-xs">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL: CATÁLOGO -->
+    <main class="flex-grow max-w-[1440px] mx-auto w-full px-6 py-8">
+        
+        <!-- Breadcrumbs -->
+        <nav class="flex gap-2 text-muted text-xs mb-8" aria-label="Ruta de navegación">
+            <a href="index.html" class="hover:text-ink">Inicio</a><span>/</span><span class="text-ink">Catálogo</span>
+        </nav>
+
+        <!-- Filtros y encabezado -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+            <div>
+                <p class="text-muted text-xs font-semibold uppercase tracking-wider mb-2">Colección esencial / 2026</p>
+                <h1 class="font-display text-4xl font-bold">Catálogo</h1>
+            </div>
+            
+            <form class="flex flex-wrap gap-4" role="search" aria-label="Filtros de catálogo">
+                <!-- Filtro por categoría -->
+                <div class="flex flex-col relative">
+                    <label for="categoria" class="text-xs font-semibold uppercase mb-1">Categoría</label>
+                    <div class="relative">
+                        <select id="categoria" name="categoria" class="appearance-none border border-line bg-white pl-4 pr-10 py-2 text-sm focus:outline-none focus:border-forest w-full sm:w-48 cursor-pointer transition-colors hover:border-muted">
+                            <option value="">Todas las categorías</option>
+                            <option value="abrigos">Abrigos</option>
+                            <option value="camisas">Camisas</option>
+                            <option value="pantalones">Pantalones</option>
+                            <option value="calzado">Calzado</option>
+                            <option value="accesorios">Accesorios</option>
+                        </select>
+                        <!-- Flecha SVG personalizada -->
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-muted">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filtro por talla -->
+                <div class="flex flex-col relative">
+                    <label for="talla" class="text-xs font-semibold uppercase mb-1">Talla</label>
+                    <div class="relative">
+                        <select id="talla" name="talla" class="appearance-none border border-line bg-white pl-4 pr-10 py-2 text-sm focus:outline-none focus:border-forest w-full sm:w-48 cursor-pointer transition-colors hover:border-muted">
+                            <option value="">Todas las tallas</option>
+                            <option value="s">S</option>
+                            <option value="m">M</option>
+                            <option value="l">L</option>
+                            <option value="xl">XL</option>
+                        </select>
+                        <!-- Flecha SVG personalizada -->
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-muted">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- REJILLA DE PRODUCTOS (4x5 = 20 Productos) -->
+        <section aria-labelledby="products-heading">
+            <h2 id="products-heading" class="sr-only">Listado de productos disponibles</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-12 gap-x-6">
+                
+                <!-- 1 -->
+                <article class="group relative flex flex-col">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80" alt="Chaqueta Atlas verde oliva" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-paper px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider">Nueva temporada</span>
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Abrigos</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Chaqueta Atlas</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$189.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 2 -->
+                <article class="group relative flex flex-col">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=600&q=80" alt="Camisa Oxford Blanca" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Camisas</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Camisa Oxford Blanca</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$65.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 3 -->
+                <article class="group relative flex flex-col">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=600&q=80" alt="Pantalón Regular Chino" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Pantalones</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Pantalón Regular Chino</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$85.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 4 -->
+                <article class="group relative flex flex-col">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=600&q=80" alt="Zapatillas Senderismo Canvas" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Calzado</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Zapatillas Canvas Low</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$110.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 5 -->
+                <article class="group relative flex flex-col">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=600&q=80" alt="Sobrecamisa de Lana" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Abrigos</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Sobrecamisa de Lana</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$145.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 6 -->
+                <article class="group relative flex flex-col">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://img01.ztat.net/article/spp-media-p1/72809cf0db114bb08339239829343903/9324e7c3aa274b329582016b70589b12.jpg?imwidth=1800" alt="Camiseta Básica de Algodón" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Camisas</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Camiseta Heavyweight</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$40.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 7 -->
+                <article class="group relative flex flex-col">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1517445312882-bc9910d016b7?auto=format&fit=crop&w=600&q=80" alt="Gorra Urbana Canvas" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Accesorios</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Gorra Canvas Clásica</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$35.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 8 -->
+                <article class="group relative flex flex-col">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=600&q=80" alt="Botas de Piel Senderismo" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Calzado</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Bota Montaña Robusta</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$210.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 9 -->
+                <article class="group relative flex flex-col">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80" alt="Sudadera Capucha Gris" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Abrigos</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Sudadera Hoodie Gris</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$95.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 10 -->
+                <article class="group relative flex flex-col">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://images.wrangler.com/is/image/Wrangler/112375269-ALT3?$PDP24-XXLARGE$&fit=crop alt="Pantalón Denim Raw" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Pantalones</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Vaquero Raw Selvedge</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$120.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 11 -->
+                <article class="group relative flex flex-col">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=600&q=80" alt="Camisa de Lino Crudo" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Camisas</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Camisa de Lino Natural</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$75.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 12 -->
+                <article class="group relative flex flex-col">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80" alt="Mochila Técnica Urbana" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Accesorios</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Mochila Roll-top 24L</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$130.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 13 -->
+                <article class="group relative flex flex-col">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=600&q=80" alt="Cárdigan de Punto Grueso" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Abrigos</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Cárdigan Punto Merino</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$160.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 14 -->
+                <article class="group relative flex flex-col">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80" alt="Blazer Casual Marino" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Abrigos</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Blazer Estructurado Azul</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$230.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 15 -->
+                <article class="group relative flex flex-col">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=600&q=80" alt="Pantalón Casual de Vestir" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Pantalones</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Pantalón Tapered Carbón</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$95.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 16 -->
+                <article class="group relative flex flex-col">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=600&q=80" alt="Zapatillas Running Retro" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Calzado</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Sneakers Retro Trainer</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$115.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 17 -->
+                <article class="group relative flex flex-col">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=600&q=80" alt="Cartera de Piel Compacta" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Accesorios</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Billetera Slim de Cuero</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$45.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 18 -->
+                <article class="group relative flex flex-col">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=600&q=80" alt="Camisa Cuadros Franela" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Camisas</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Camisa Franela Escocesa</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$70.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 19 -->
+                <article class="group relative flex flex-col">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1582552938357-32b906df40cb?auto=format&fit=crop&w=600&q=80" alt="Shorts Cargo de Algodón" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Pantalones</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Bermuda Cargo Ripstop</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$55.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- 20 -->
+                <article class="group relative flex flex-col">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1608256246200-53e635b5b65f?auto=format&fit=crop&w=600&q=80" alt="Gorro de Lana Invierno" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Accesorios</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Beanie Lana Canalé</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$30.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER (Reutilizable) -->
+    <footer class="bg-ink text-paper mt-16">
+        <div class="max-w-[1440px] mx-auto px-6 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="md:col-span-1">
+                    <a href="index.html" class="font-display text-2xl font-bold tracking-tight">NORTE</a>
+                    <p class="mt-4 text-sm text-gray-400">Ropa esencial para el día a día. Diseñada para resistir, creada para acompañarte.</p>
+                </div>
+                <div>
+                    <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Categorías</h3>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Calzado</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Camisas</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Pantalones</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Accesorios</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Legal</h3>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Términos y Condiciones</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Política de Privacidad</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Sobre la Marca</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Contacto</h3>
+                    <ul class="space-y-3 text-sm">
+                        <li>hola@norte.com</li>
+                        <li>+33 1 23 45 67 89</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-16 pt-8 border-t border-gray-800 text-sm text-gray-500 text-center">
+                &copy; 2026 NORTE. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+    <!-- Script para el carrito -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const bagCount = document.getElementById('bag-count');
+            const addButtons = document.querySelectorAll('.add-to-cart-btn');
+
+            addButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    // Evita que el clic en el botón active el enlace del producto
+                    e.preventDefault(); 
+                    
+                    // Suma 1 al carrito
+                    let currentCount = parseInt(bagCount.textContent);
+                    bagCount.textContent = currentCount + 1;
+                    
+                    // Feedback visual: Cambia a un icono de "check" y color verde temporalmente
+                    const originalSVG = button.innerHTML;
+                    button.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
+                    button.classList.add('bg-forest', 'text-white');
+                    button.classList.remove('bg-white', 'text-ink');
+                    
+                    // Restaura el botón después de 1 segundo
+                    setTimeout(() => {
+                        button.innerHTML = originalSVG;
+                        button.classList.remove('bg-forest', 'text-white');
+                        button.classList.add('bg-white', 'text-ink');
+                    }, 1000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+</body>
+</html>
