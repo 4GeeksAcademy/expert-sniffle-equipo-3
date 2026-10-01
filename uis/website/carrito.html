@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Revisa tu selección en Maison Lumière antes de finalizar la compra.">
+  <title>Carrito | Maison Lumière</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-gray-50 font-sans text-gray-900">
+  <header class="sticky top-0 z-10 border-b border-gray-200 bg-white">
+    <div class="mx-auto flex h-20 max-w-6xl items-center justify-between px-4 sm:px-6">
+      <a href="index.html" class="font-serif text-lg font-semibold tracking-wide sm:text-xl" aria-label="Maison Lumière, inicio">
+        MAISON LUMIÈRE
+      </a>
+
+      <nav aria-label="Navegación principal" class="flex items-center gap-4 text-sm sm:gap-6">
+        <a href="catalogo.html" class="hidden text-gray-600 hover:text-gray-900 sm:inline">Colección</a>
+        <a href="carrito.html" aria-current="page" class="flex items-center gap-2 font-medium text-gray-900">
+          <span>Bolsa</span>
+          <span class="flex h-6 w-6 items-center justify-center rounded-full bg-gray-900 text-xs text-white" aria-label="4 unidades">4</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
+    <nav aria-label="Ruta de navegación" class="mb-8 text-sm text-gray-500">
+      <a href="index.html" class="hover:text-gray-900">Inicio</a>
+      <span aria-hidden="true" class="px-2">/</span>
+      <span aria-current="page" class="text-gray-900">Carrito</span>
+    </nav>
+
+    <div class="mb-8 border-b border-gray-200 pb-6 sm:mb-10">
+      <p class="mb-2 text-xs font-semibold uppercase tracking-widest text-gray-500">Maison Lumière</p>
+      <h1 class="font-serif text-3xl font-medium sm:text-4xl">Tu carrito</h1>
+    </div>
+
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-3 lg:gap-14">
+      <section aria-labelledby="items-title" class="min-w-0 lg:col-span-2">
+        <h2 id="items-title" class="sr-only">Productos seleccionados</h2>
+        <table class="w-full table-fixed border-collapse text-left text-xs sm:text-sm">
+          <caption class="sr-only">Tres productos con precio unitario, cantidad y total por línea</caption>
+          <colgroup>
+            <col class="w-2/5 sm:w-5/12">
+            <col class="w-1/5 sm:w-1/5">
+            <col class="w-1/6 sm:w-1/6">
+            <col>
+          </colgroup>
+          <thead>
+            <tr class="border-b border-gray-300 text-xs font-semibold text-gray-600">
+              <th scope="col" class="py-3 pr-1">Producto</th>
+              <th scope="col" class="px-1 py-3">Precio</th>
+              <th scope="col" class="px-1 py-3 text-center">
+                <span class="sm:hidden">Cant.</span>
+                <span class="hidden sm:inline">Cantidad</span>
+              </th>
+              <th scope="col" class="py-3 pl-1 text-right">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-gray-200">
+              <th scope="row" class="py-4 pr-1 font-medium">
+                <div class="flex min-w-0 items-center gap-2 sm:gap-4">
+                  <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=160&q=80" alt="Camisa blanca Étoile" class="h-12 w-10 flex-shrink-0 object-cover sm:h-16 sm:w-14">
+                  <span class="break-words">Camisa Étoile</span>
+                </div>
+              </th>
+              <td class="px-1 py-4">€79,00</td>
+              <td class="px-1 py-4 text-center">1</td>
+              <td class="py-4 pl-1 text-right font-medium">€79,00</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <th scope="row" class="py-4 pr-1 font-medium">
+                <div class="flex min-w-0 items-center gap-2 sm:gap-4">
+                  <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=160&q=80" alt="Pantalón oscuro Rivoli" class="h-12 w-10 flex-shrink-0 object-cover sm:h-16 sm:w-14">
+                  <span class="break-words">Pantalón Rivoli</span>
+                </div>
+              </th>
+              <td class="px-1 py-4">€110,00</td>
+              <td class="px-1 py-4 text-center">1</td>
+              <td class="py-4 pl-1 text-right font-medium">€110,00</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <th scope="row" class="py-4 pr-1 font-medium">
+                <div class="flex min-w-0 items-center gap-2 sm:gap-4">
+                  <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=160&q=80" alt="Zapatillas Lumière color claro" class="h-12 w-10 flex-shrink-0 object-cover sm:h-16 sm:w-14">
+                  <span class="break-words">Zapatillas Lumière</span>
+                </div>
+              </th>
+              <td class="px-1 py-4">€95,00</td>
+              <td class="px-1 py-4 text-center">2</td>
+              <td class="py-4 pl-1 text-right font-medium">€190,00</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <aside aria-labelledby="summary-title" class="border-t border-gray-300 pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+        <h2 id="summary-title" class="mb-6 font-serif text-2xl font-medium">Resumen</h2>
+        <dl class="space-y-4 text-sm">
+          <div class="flex justify-between gap-4">
+            <dt class="text-gray-600">Subtotal</dt>
+            <dd class="font-medium">€379,00</dd>
+          </div>
+          <div class="flex justify-between gap-4">
+            <dt class="text-gray-600">Impuestos (20%)</dt>
+            <dd class="font-medium">€75,80</dd>
+          </div>
+          <div class="flex justify-between gap-4 border-t border-gray-200 pt-4 text-base">
+            <dt class="font-semibold">Total</dt>
+            <dd class="font-semibold">€454,80</dd>
+          </div>
+        </dl>
+        <a href="checkout.html" class="mt-7 flex h-12 w-full items-center justify-center bg-gray-900 px-5 text-sm font-semibold text-white transition-colors hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
+          Comprar
+        </a>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="mt-12 bg-gray-900 text-white">
+    <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-14">
+      <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <a href="index.html" class="font-serif text-xl font-semibold tracking-wide">MAISON LUMIÈRE</a>
+          <p class="mt-4 max-w-xs text-sm leading-6 text-gray-300">Una mirada atemporal al vestir cotidiano.</p>
+        </div>
+        <div>
+          <h2 class="mb-4 text-xs font-semibold uppercase tracking-widest text-gray-300">Categorías</h2>
+          <ul class="space-y-3 text-sm text-gray-200">
+            <li><a href="catalogo.html" class="hover:text-white">Calzado</a></li>
+            <li><a href="catalogo.html" class="hover:text-white">Camisas</a></li>
+            <li><a href="catalogo.html" class="hover:text-white">Pantalones</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="mb-4 text-xs font-semibold uppercase tracking-widest text-gray-300">Legal</h2>
+          <ul class="space-y-3 text-sm text-gray-200">
+            <li><a href="#" class="hover:text-white">Términos y condiciones</a></li>
+            <li><a href="#" class="hover:text-white">Política de privacidad</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="mb-4 text-xs font-semibold uppercase tracking-widest text-gray-300">Contacto</h2>
+          <p class="text-sm text-gray-200">bonjour@maisonlumiere.com</p>
+        </div>
+      </div>
+      <p class="mt-10 border-t border-gray-700 pt-6 text-center text-xs text-gray-400">&copy; 2026 Maison Lumière. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>
