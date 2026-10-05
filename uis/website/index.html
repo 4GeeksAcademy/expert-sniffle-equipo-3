@@ -1,112 +1,350 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Vista de producto de chaqueta técnica Atlas.">
-  <title>Chaqueta Atlas | Norte</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NORTE - Ropa esencial para el día a día. Descubre nuestra nueva colección.">
+    <title>Inicio | NORTE</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"DM Sans"', 'sans-serif'],
+                        display: ['"Manrope"', 'sans-serif'],
+                    },
+                    colors: {
+                        ink: '#17201b',
+                        muted: '#677068',
+                        paper: '#f4f2ec',
+                        line: '#d8d8d0',
+                        accent: '#c64f32',
+                        forest: '#344b3d',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Schema.org para la Organización (Home) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "NORTE",
+      "url": "https://norte.com",
+      "logo": "https://norte.com/ruta-de-tu-imagen.png",
+      "description": "Marca de ropa esencial y prototipo de e-commerce."
+    }
+    </script>
 </head>
-<body>
-  <header class="site-header">
-    <a class="brand" href="#" aria-label="Norte, inicio">NORTE</a>
-    <span class="collection">Colección esencial / 2026</span>
-    <a class="bag-button" href="carrito.html" aria-label="Abrir carrito">
-      Bolsa <span id="bag-count" aria-live="polite">0</span>
-    </a>
-  </header>
+<body class="bg-paper text-ink font-sans flex flex-col min-h-screen overflow-x-hidden">
 
-  <main>
-    <nav class="breadcrumb" aria-label="Ruta de navegación">
-      <a href="#">Inicio</a><span>/</span><a href="#">Abrigos</a><span>/</span><span>Chaqueta Atlas</span>
-    </nav>
+    <!-- NAVBAR (Idéntico al catálogo) -->
+    <header class="bg-white border-b border-line sticky top-0 z-50">
+        <div class="max-w-[1440px] mx-auto px-6 h-[78px] flex justify-between items-center">
+            <!-- Logo e Iglú -->
+            <a href="index.html" class="flex items-center gap-2 group" aria-label="Norte, inicio">
+                <img src="https://i.pinimg.com/736x/d4/46/74/d446745f86fd4e5a0615e644c9e0e90b.jpg" alt="Logo Norte" class="w-16 h-16 object-contain transition-transform group-hover:scale-105">
+                <span class="font-display text-xl font-bold tracking-tight">NORTE</span>
+            </a>
+            
+            <div class="hidden md:block flex-1 max-w-md mx-8">
+                <label for="search" class="sr-only">Buscar productos</label>
+                <input id="search" type="search" placeholder="Buscar en la colección..." 
+                       class="w-full border border-line bg-paper px-4 py-2 text-sm focus:outline-none focus:border-forest transition-colors">
+            </div>
 
-    <section class="product" aria-labelledby="product-name">
-      <div class="product-media">
-        <img
-          src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=1400&q=90"
-          alt="Chaqueta Atlas color verde oliva vista de frente"
-        >
-        <span class="image-label">Nueva temporada</span>
-      </div>
-
-      <div class="product-info">
-        <div class="product-heading">
-          <p class="reference">REF. NT-AT26-OLV</p>
-          <h1 id="product-name">Chaqueta Atlas</h1>
-          <p class="price">$189.00</p>
+            <div class="flex items-center gap-6 text-sm font-medium">
+                <a href="catalogo.html" class="hidden sm:block hover:text-muted transition-colors">Catálogo</a>
+                <a href="#" class="hidden sm:block hover:text-muted transition-colors">Mi Cuenta</a>
+                <a href="carrito.html" class="flex items-center hover:text-muted transition-colors" aria-label="Abrir carrito">
+                    Bolsa 
+                    <span id="bag-count" class="ml-2 bg-ink text-white w-6 h-6 flex items-center justify-center rounded-full text-xs">0</span>
+                </a>
+            </div>
         </div>
+    </header>
 
-        <p class="summary">Una capa exterior ligera y resistente, diseñada para acompañarte cuando cambia el clima.</p>
-
-        <form id="add-to-cart-form" class="purchase-form">
-          <fieldset>
-            <div class="field-title">
-              <legend>Talla</legend>
-              <a href="#size-guide">Guía de tallas</a>
+    <main class="flex-grow w-full">
+        
+        <!-- SECCIÓN HERO -->
+        <section class="relative w-full h-[70vh] min-h-[500px] flex items-center justify-center bg-ink overflow-hidden" aria-labelledby="hero-heading">
+            <!-- Imagen de fondo con overlay oscuro para contraste -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1920&q=80" alt="Campaña colección 2026" class="w-full h-full object-cover opacity-60">
             </div>
-            <div class="size-options">
-              <input type="radio" name="size" id="size-s" value="S">
-              <label for="size-s">S</label>
-              <input type="radio" name="size" id="size-m" value="M" checked>
-              <label for="size-m">M</label>
-              <input type="radio" name="size" id="size-l" value="L">
-              <label for="size-l">L</label>
-              <input type="radio" name="size" id="size-xl" value="XL">
-              <label for="size-xl">XL</label>
+            
+            <div class="relative z-10 text-center px-6 max-w-3xl mx-auto flex flex-col items-center">
+                <p class="text-white/90 text-sm font-semibold uppercase tracking-[0.2em] mb-4">Nueva Colección 2026</p>
+                <h1 id="hero-heading" class="font-display text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                    El diseño importa.<br>La utilidad perdura.
+                </h1>
+                <p class="text-paper/80 text-lg md:text-xl mb-10 max-w-xl">
+                    Prendas esenciales diseñadas para acompañarte en tu día a día, sin complicaciones y con el máximo rendimiento.
+                </p>
+                <a href="catalogo.html" class="inline-flex items-center justify-center px-8 py-4 text-sm font-bold uppercase tracking-wider bg-white text-ink hover:bg-forest hover:text-white transition-colors">
+                    Explorar el Catálogo
+                </a>
             </div>
-          </fieldset>
+        </section>
 
-          <div class="quantity-field">
-            <label for="quantity">Cantidad</label>
-            <div class="quantity-control">
-              <button type="button" data-action="decrease" aria-label="Reducir cantidad">−</button>
-              <input id="quantity" name="quantity" type="number" value="1" min="1" max="10" inputmode="numeric">
-              <button type="button" data-action="increase" aria-label="Aumentar cantidad">+</button>
+        <!-- SECCIÓN: NUEVOS LANZAMIENTOS -->
+        <section class="max-w-[1440px] mx-auto px-6 py-20" aria-labelledby="nuevos-heading">
+            <div class="flex justify-between items-end mb-10">
+                <h2 id="nuevos-heading" class="font-display text-3xl font-bold">Nuevos lanzamientos</h2>
+                <a href="catalogo.html" class="text-sm font-semibold text-muted hover:text-ink transition-colors hidden sm:block">Ver todos →</a>
             </div>
-          </div>
+            
+            <!-- Contenedor de listado horizontal (Scroll en móvil, Grid en PC) -->
+            <div class="flex overflow-x-auto lg:grid lg:grid-cols-4 gap-6 pb-8 snap-x snap-mandatory scrollbar-hide">
+                
+                <!-- Producto 1 -->
+                <article class="group relative flex flex-col min-w-[280px] sm:min-w-[320px] lg:min-w-0 snap-start">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80" alt="Chaqueta Atlas" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-paper px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider">Nuevo</span>
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Abrigos</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Chaqueta Atlas</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$189.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                        </button>
+                    </div>
+                </article>
 
-          <button class="add-button" type="submit">
-            <span>Agregar al carrito</span><span aria-hidden="true">→</span>
-          </button>
-          <p class="cart-message" id="cart-message" role="status"></p>
-        </form>
+                <!-- Producto 2 -->
+                <article class="group relative flex flex-col min-w-[280px] sm:min-w-[320px] lg:min-w-0 snap-start">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=600&q=80" alt="Camisa Lino Natural" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Camisas</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Camisa Lino Natural</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$75.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                        </button>
+                    </div>
+                </article>
 
-        <ul class="service-notes" aria-label="Beneficios de compra">
-          <li>Envío gratuito desde $150</li>
-          <li>Cambios simples durante 30 días</li>
-        </ul>
-      </div>
-    </section>
+                <!-- Producto 3 -->
+                <article class="group relative flex flex-col min-w-[280px] sm:min-w-[320px] lg:min-w-0 snap-start">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://images.wrangler.com/is/image/Wrangler/112375269-ALT3?$PDP24-XXLARGE$&fit=crop alt=" alt="Vaquero Raw Selvedge" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Pantalones</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Vaquero Raw Selvedge</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$120.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                        </button>
+                    </div>
+                </article>
 
-    <section class="details" aria-labelledby="details-title">
-      <div class="details-intro">
-        <p class="eyebrow">Detalles de la prenda</p>
-        <h2 id="details-title">Hecha para seguir el ritmo del día.</h2>
-      </div>
-      <div class="detail-block">
-        <h3>Materiales</h3>
-        <p>Exterior de algodón orgánico de alta densidad con un 12% de nylon reciclado para mejorar la resistencia. Forro interior transpirable y cierres metálicos con acabado mate.</p>
-        <dl>
-          <div><dt>Composición</dt><dd>88% algodón / 12% nylon</dd></div>
-          <div><dt>Cuidado</dt><dd>Lavado suave a 30 °C</dd></div>
-        </dl>
-      </div>
-      <div class="detail-block">
-        <h3>Uso recomendado</h3>
-        <p>Ideal para trayectos urbanos, fines de semana al aire libre y viajes de entretiempo. Su corte permite llevar una capa ligera debajo sin perder movilidad.</p>
-        <ul class="use-tags">
-          <li>Ciudad</li>
-          <li>Viajes</li>
-          <li>Senderos suaves</li>
-        </ul>
-      </div>
-    </section>
-  </main>
+                <!-- Producto 4 -->
+                <article class="group relative flex flex-col min-w-[280px] sm:min-w-[320px] lg:min-w-0 snap-start">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80" alt="Mochila Roll-top 24L" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Accesorios</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Mochila Roll-top 24L</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$130.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                        </button>
+                    </div>
+                </article>
 
-  <script src="script.js"></script>
+            </div>
+        </section>
+
+        <!-- BANNER INTERMEDIO -->
+        <section class="bg-paper border-y border-line py-16 text-center px-6">
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4">Envío gratuito en todos los pedidos</h2>
+            <p class="text-muted text-sm max-w-xl mx-auto">Cambios simples durante 30 días. Queremos que encuentres tu ajuste perfecto sin presiones.</p>
+        </section>
+
+        <!-- SECCIÓN: MÁS VENDIDOS -->
+        <section class="max-w-[1440px] mx-auto px-6 py-20" aria-labelledby="vendidos-heading">
+            <div class="flex justify-between items-end mb-10">
+                <h2 id="vendidos-heading" class="font-display text-3xl font-bold">Más vendidos</h2>
+                <a href="catalogo.html" class="text-sm font-semibold text-muted hover:text-ink transition-colors hidden sm:block">Explorar colección →</a>
+            </div>
+            
+            <div class="flex overflow-x-auto lg:grid lg:grid-cols-4 gap-6 pb-8 snap-x snap-mandatory scrollbar-hide">
+                
+                <!-- Producto 5 -->
+                <article class="group relative flex flex-col min-w-[280px] sm:min-w-[320px] lg:min-w-0 snap-start">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=600&q=80" alt="Camisa Oxford Blanca" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Camisas</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Camisa Oxford Blanca</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$65.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Producto 6 -->
+                <article class="group relative flex flex-col min-w-[280px] sm:min-w-[320px] lg:min-w-0 snap-start">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80" alt="Sudadera Hoodie Gris" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Abrigos</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Sudadera Hoodie Gris</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$95.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Producto 7 -->
+                <article class="group relative flex flex-col min-w-[280px] sm:min-w-[320px] lg:min-w-0 snap-start">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=600&q=80" alt="Sneakers Retro Trainer" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Calzado</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Sneakers Retro Trainer</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$115.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Producto 8 -->
+                <article class="group relative flex flex-col min-w-[280px] sm:min-w-[320px] lg:min-w-0 snap-start">
+                    <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=600&q=80" alt="Billetera Slim de Cuero" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-muted text-xs font-semibold uppercase mb-1">Accesorios</p>
+                    <div class="flex justify-between items-end mt-auto">
+                        <div>
+                            <h3 class="font-display text-base font-semibold mb-1">
+                                <a href="producto.html"><span class="absolute inset-0"></span>Billetera Slim de Cuero</a>
+                            </h3>
+                            <p class="text-ink font-semibold">$45.00</p>
+                        </div>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                        </button>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER (Idéntico al catálogo) -->
+    <footer class="bg-ink text-paper mt-8">
+        <div class="max-w-[1440px] mx-auto px-6 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="md:col-span-1">
+                    <a href="index.html" class="font-display text-2xl font-bold tracking-tight">NORTE</a>
+                    <p class="mt-4 text-sm text-gray-400">Ropa esencial para el día a día. Diseñada para resistir, creada para acompañarte.</p>
+                </div>
+                <div>
+                    <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Categorías</h3>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="catalogo.html" class="hover:text-white transition-colors">Calzado</a></li>
+                        <li><a href="catalogo.html" class="hover:text-white transition-colors">Camisas</a></li>
+                        <li><a href="catalogo.html" class="hover:text-white transition-colors">Pantalones</a></li>
+                        <li><a href="catalogo.html" class="hover:text-white transition-colors">Accesorios</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Legal</h3>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Términos y Condiciones</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Política de Privacidad</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Sobre la Marca</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Contacto</h3>
+                    <ul class="space-y-3 text-sm">
+                        <li>hola@norte.com</li>
+                        <li>+33 1 23 45 67 89</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-16 pt-8 border-t border-gray-800 text-sm text-gray-500 text-center">
+                &copy; 2026 NORTE. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script del Carrito -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const bagCount = document.getElementById('bag-count');
+            const addButtons = document.querySelectorAll('.add-to-cart-btn');
+
+            addButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault(); 
+                    
+                    let currentCount = parseInt(bagCount.textContent);
+                    bagCount.textContent = currentCount + 1;
+                    
+                    const originalSVG = button.innerHTML;
+                    button.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
+                    button.classList.add('bg-forest', 'text-white');
+                    button.classList.remove('bg-white', 'text-ink');
+                    
+                    setTimeout(() => {
+                        button.innerHTML = originalSVG;
+                        button.classList.remove('bg-forest', 'text-white');
+                        button.classList.add('bg-white', 'text-ink');
+                    }, 1000);
+                });
+            });
+        });
+    </script>
 </body>
 </html>

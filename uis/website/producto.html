@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Vista de producto de chaqueta técnica Atlas.">
+  <title>Chaqueta Atlas | Norte</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Norte, inicio">NORTE</a>
+    <span class="collection">Colección esencial / 2026</span>
+    <a class="bag-button" href="carrito.html" aria-label="Abrir carrito">
+      Bolsa <span id="bag-count" aria-live="polite">0</span>
+    </a>
+  </header>
+
+  <main>
+    <nav class="breadcrumb" aria-label="Ruta de navegación">
+      <a href="#">Inicio</a><span>/</span><a href="#">Abrigos</a><span>/</span><span>Chaqueta Atlas</span>
+    </nav>
+
+    <section class="product" aria-labelledby="product-name">
+      <div class="product-media">
+        <img
+          src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=1400&q=90"
+          alt="Chaqueta Atlas color verde oliva vista de frente"
+        >
+        <span class="image-label">Nueva temporada</span>
+      </div>
+
+      <div class="product-info">
+        <div class="product-heading">
+          <p class="reference">REF. NT-AT26-OLV</p>
+          <h1 id="product-name">Chaqueta Atlas</h1>
+          <p class="price">$189.00</p>
+        </div>
+
+        <p class="summary">Una capa exterior ligera y resistente, diseñada para acompañarte cuando cambia el clima.</p>
+
+        <form id="add-to-cart-form" class="purchase-form">
+          <fieldset>
+            <div class="field-title">
+              <legend>Talla</legend>
+              <a href="#size-guide">Guía de tallas</a>
+            </div>
+            <div class="size-options">
+              <input type="radio" name="size" id="size-s" value="S">
+              <label for="size-s">S</label>
+              <input type="radio" name="size" id="size-m" value="M" checked>
+              <label for="size-m">M</label>
+              <input type="radio" name="size" id="size-l" value="L">
+              <label for="size-l">L</label>
+              <input type="radio" name="size" id="size-xl" value="XL">
+              <label for="size-xl">XL</label>
+            </div>
+          </fieldset>
+
+          <div class="quantity-field">
+            <label for="quantity">Cantidad</label>
+            <div class="quantity-control">
+              <button type="button" data-action="decrease" aria-label="Reducir cantidad">−</button>
+              <input id="quantity" name="quantity" type="number" value="1" min="1" max="10" inputmode="numeric">
+              <button type="button" data-action="increase" aria-label="Aumentar cantidad">+</button>
+            </div>
+          </div>
+
+          <button class="add-button" type="submit">
+            <span>Agregar al carrito</span><span aria-hidden="true">→</span>
+          </button>
+          <p class="cart-message" id="cart-message" role="status"></p>
+        </form>
+
+        <ul class="service-notes" aria-label="Beneficios de compra">
+          <li>Envío gratuito desde $150</li>
+          <li>Cambios simples durante 30 días</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="details" aria-labelledby="details-title">
+      <div class="details-intro">
+        <p class="eyebrow">Detalles de la prenda</p>
+        <h2 id="details-title">Hecha para seguir el ritmo del día.</h2>
+      </div>
+      <div class="detail-block">
+        <h3>Materiales</h3>
+        <p>Exterior de algodón orgánico de alta densidad con un 12% de nylon reciclado para mejorar la resistencia. Forro interior transpirable y cierres metálicos con acabado mate.</p>
+        <dl>
+          <div><dt>Composición</dt><dd>88% algodón / 12% nylon</dd></div>
+          <div><dt>Cuidado</dt><dd>Lavado suave a 30 °C</dd></div>
+        </dl>
+      </div>
+      <div class="detail-block">
+        <h3>Uso recomendado</h3>
+        <p>Ideal para trayectos urbanos, fines de semana al aire libre y viajes de entretiempo. Su corte permite llevar una capa ligera debajo sin perder movilidad.</p>
+        <ul class="use-tags">
+          <li>Ciudad</li>
+          <li>Viajes</li>
+          <li>Senderos suaves</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
