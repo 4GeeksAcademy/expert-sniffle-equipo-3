@@ -3,157 +3,192 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Datos de entrega y pago para tu compra en Maison Lumière.">
-  <title>Finalizar compra | Maison Lumière</title>
+  <meta name="description" content="Datos de entrega y pago para tu compra en NORTE.">
+  <title>Finalizar compra | NORTE</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"DM Sans"', 'sans-serif'],
+            display: ['"Manrope"', 'sans-serif'],
+          },
+          colors: {
+            ink: '#17201b',
+            muted: '#677068',
+            paper: '#f4f2ec',
+            line: '#d8d8d0',
+            accent: '#c64f32',
+            forest: '#344b3d',
+          }
+        }
+      }
+    }
+  </script>
 </head>
-<body class="min-h-screen bg-gray-50 font-sans text-gray-900">
-  <header class="sticky top-0 z-10 border-b border-gray-200 bg-white">
-    <div class="mx-auto flex h-20 max-w-6xl items-center justify-between px-4 sm:px-6">
-      <a href="index.html" class="font-serif text-lg font-semibold tracking-wide sm:text-xl" aria-label="Maison Lumière, inicio">
-        MAISON LUMIÈRE
+<body class="bg-paper text-ink font-sans flex flex-col min-h-screen overflow-x-hidden">
+  <header class="bg-white border-b border-line sticky top-0 z-50">
+    <div class="max-w-[1440px] mx-auto px-6 h-[78px] flex justify-between items-center">
+      <a href="index.html" class="flex items-center gap-2 group" aria-label="Norte, inicio">
+        <img src="https://i.pinimg.com/736x/d4/46/74/d446745f86fd4e5a0615e644c9e0e90b.jpg" alt="Logo Norte" class="w-16 h-16 object-contain transition-transform group-hover:scale-105">
+        <span class="font-display text-xl font-bold tracking-tight">NORTE</span>
       </a>
-      <nav aria-label="Navegación principal" class="flex items-center gap-4 text-sm sm:gap-6">
-        <a href="catalogo.html" class="hidden text-gray-600 hover:text-gray-900 sm:inline">Colección</a>
-        <a href="carrito.html" class="flex items-center gap-2 text-gray-600 hover:text-gray-900" aria-label="Volver a la bolsa, 4 unidades">
-          <span>Bolsa</span>
-          <span class="flex h-6 w-6 items-center justify-center rounded-full bg-gray-900 text-xs text-white" aria-hidden="true">4</span>
+      <div class="hidden md:block flex-1 max-w-md mx-8">
+        <label for="search" class="sr-only">Buscar productos</label>
+        <input id="search" type="search" placeholder="Buscar en la colección..." class="w-full border border-line bg-paper px-4 py-2 text-sm focus:outline-none focus:border-forest transition-colors">
+      </div>
+      <div class="flex items-center gap-6 text-sm font-medium">
+        <a href="catalogo.html" class="hidden sm:block hover:text-muted transition-colors">Catálogo</a>
+        <a href="#" class="hidden sm:block hover:text-muted transition-colors">Mi Cuenta</a>
+        <a href="carrito.html" class="flex items-center hover:text-muted transition-colors" aria-label="Abrir carrito">
+          Bolsa
+          <span id="bag-count" class="ml-2 bg-ink text-white w-6 h-6 flex items-center justify-center rounded-full text-xs">4</span>
         </a>
-      </nav>
+      </div>
     </div>
   </header>
 
-  <main class="mx-auto w-full max-w-4xl px-4 py-10 sm:px-6 sm:py-14">
-    <nav aria-label="Ruta de navegación" class="mb-8 text-sm text-gray-500">
-      <a href="index.html" class="hover:text-gray-900">Inicio</a>
+  <main class="flex-grow w-full">
+    <div class="mx-auto w-full max-w-4xl px-6 py-10 sm:py-14">
+    <nav aria-label="Ruta de navegación" class="mb-8 text-sm text-muted">
+      <a href="index.html" class="hover:text-ink">Inicio</a>
       <span aria-hidden="true" class="px-2">/</span>
-      <a href="carrito.html" class="hover:text-gray-900">Carrito</a>
+      <a href="carrito.html" class="hover:text-ink">Carrito</a>
       <span aria-hidden="true" class="px-2">/</span>
-      <span aria-current="page" class="text-gray-900">Finalizar compra</span>
+      <span aria-current="page" class="text-ink">Finalizar compra</span>
     </nav>
 
-    <div class="mb-8 border-b border-gray-200 pb-6 sm:mb-10">
-      <p class="mb-2 text-xs font-semibold uppercase tracking-widest text-gray-500">Maison Lumière</p>
-      <h1 class="font-serif text-3xl font-medium sm:text-4xl">Finalizar compra</h1>
-      <p class="mt-3 text-sm text-gray-600"><span aria-hidden="true">*</span> Campos obligatorios</p>
+    <div class="mb-8 border-b border-line pb-6 sm:mb-10">
+      <p class="mb-2 text-xs font-semibold uppercase tracking-widest text-muted">NORTE</p>
+      <h1 class="font-display text-3xl font-bold sm:text-4xl">Finalizar compra</h1>
+      <p class="mt-3 text-sm text-muted"><span aria-hidden="true">*</span> Campos obligatorios</p>
     </div>
 
     <form class="space-y-10">
-      <fieldset class="border-t border-gray-300 pt-6">
-        <legend class="px-0 font-serif text-xl font-medium">1. Datos personales</legend>
-        <p class="mb-6 mt-2 text-sm text-gray-600">Indica los datos de contacto de la persona que realiza la compra.</p>
+      <fieldset class="border-t border-line pt-6">
+        <legend class="px-0 font-display text-xl font-semibold">1. Datos personales</legend>
+        <p class="mb-6 mt-2 text-sm text-muted">Indica los datos de contacto de la persona que realiza la compra.</p>
         <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div>
             <label for="given-name" class="mb-2 block text-sm font-medium">Nombre <span aria-hidden="true">*</span></label>
-            <input id="given-name" name="given-name" type="text" autocomplete="given-name" required class="block w-full border border-gray-300 bg-white px-3 py-3 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
+            <input id="given-name" name="given-name" type="text" autocomplete="given-name" required class="block w-full border border-line bg-white px-3 py-3 text-sm text-ink focus:border-forest focus:outline-none focus:ring-2 focus:ring-forest focus:ring-offset-2">
           </div>
           <div>
             <label for="family-name" class="mb-2 block text-sm font-medium">Apellidos <span aria-hidden="true">*</span></label>
-            <input id="family-name" name="family-name" type="text" autocomplete="family-name" required class="block w-full border border-gray-300 bg-white px-3 py-3 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
+            <input id="family-name" name="family-name" type="text" autocomplete="family-name" required class="block w-full border border-line bg-white px-3 py-3 text-sm text-ink focus:border-forest focus:outline-none focus:ring-2 focus:ring-forest focus:ring-offset-2">
           </div>
           <div>
             <label for="email" class="mb-2 block text-sm font-medium">Correo electrónico <span aria-hidden="true">*</span></label>
-            <input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-help" class="block w-full border border-gray-300 bg-white px-3 py-3 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
-            <p id="email-help" class="mt-2 text-xs leading-5 text-gray-500">Ejemplo: nombre@dominio.com</p>
+            <input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-help" class="block w-full border border-line bg-white px-3 py-3 text-sm text-ink focus:border-forest focus:outline-none focus:ring-2 focus:ring-forest focus:ring-offset-2">
+            <p id="email-help" class="mt-2 text-xs leading-5 text-muted">Ejemplo: nombre@dominio.com</p>
           </div>
           <div>
             <label for="tel" class="mb-2 block text-sm font-medium">Teléfono <span aria-hidden="true">*</span></label>
-            <input id="tel" name="tel" type="tel" autocomplete="tel" required aria-describedby="tel-help" class="block w-full border border-gray-300 bg-white px-3 py-3 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
-            <p id="tel-help" class="mt-2 text-xs leading-5 text-gray-500">Incluye el prefijo del país.</p>
+            <input id="tel" name="tel" type="tel" autocomplete="tel" required aria-describedby="tel-help" class="block w-full border border-line bg-white px-3 py-3 text-sm text-ink focus:border-forest focus:outline-none focus:ring-2 focus:ring-forest focus:ring-offset-2">
+            <p id="tel-help" class="mt-2 text-xs leading-5 text-muted">Incluye el prefijo del país.</p>
           </div>
         </div>
       </fieldset>
 
-      <fieldset class="border-t border-gray-300 pt-6">
-        <legend class="px-0 font-serif text-xl font-medium">2. Dirección de entrega</legend>
-        <p class="mb-6 mt-2 text-sm text-gray-600">Escribe la dirección donde quieres recibir el pedido.</p>
+      <fieldset class="border-t border-line pt-6">
+        <legend class="px-0 font-display text-xl font-semibold">2. Dirección de entrega</legend>
+        <p class="mb-6 mt-2 text-sm text-muted">Escribe la dirección donde quieres recibir el pedido.</p>
         <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div class="sm:col-span-2">
             <label for="address-line1" class="mb-2 block text-sm font-medium">Dirección <span aria-hidden="true">*</span></label>
-            <input id="address-line1" name="address-line1" type="text" autocomplete="shipping address-line1" required aria-describedby="address-help" class="block w-full border border-gray-300 bg-white px-3 py-3 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
-            <p id="address-help" class="mt-2 text-xs leading-5 text-gray-500">Incluye calle y número.</p>
+            <input id="address-line1" name="address-line1" type="text" autocomplete="shipping address-line1" required aria-describedby="address-help" class="block w-full border border-line bg-white px-3 py-3 text-sm text-ink focus:border-forest focus:outline-none focus:ring-2 focus:ring-forest focus:ring-offset-2">
+            <p id="address-help" class="mt-2 text-xs leading-5 text-muted">Incluye calle y número.</p>
           </div>
           <div class="sm:col-span-2">
-            <label for="address-line2" class="mb-2 block text-sm font-medium">Piso, puerta u otras indicaciones <span class="font-normal text-gray-500">(opcional)</span></label>
-            <input id="address-line2" name="address-line2" type="text" autocomplete="shipping address-line2" class="block w-full border border-gray-300 bg-white px-3 py-3 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
+            <label for="address-line2" class="mb-2 block text-sm font-medium">Piso, puerta u otras indicaciones <span class="font-normal text-muted">(opcional)</span></label>
+            <input id="address-line2" name="address-line2" type="text" autocomplete="shipping address-line2" class="block w-full border border-line bg-white px-3 py-3 text-sm text-ink focus:border-forest focus:outline-none focus:ring-2 focus:ring-forest focus:ring-offset-2">
           </div>
           <div>
             <label for="city" class="mb-2 block text-sm font-medium">Ciudad <span aria-hidden="true">*</span></label>
-            <input id="city" name="city" type="text" autocomplete="shipping address-level2" required class="block w-full border border-gray-300 bg-white px-3 py-3 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
+            <input id="city" name="city" type="text" autocomplete="shipping address-level2" required class="block w-full border border-line bg-white px-3 py-3 text-sm text-ink focus:border-forest focus:outline-none focus:ring-2 focus:ring-forest focus:ring-offset-2">
           </div>
           <div>
             <label for="region" class="mb-2 block text-sm font-medium">Provincia o región <span aria-hidden="true">*</span></label>
-            <input id="region" name="region" type="text" autocomplete="shipping address-level1" required class="block w-full border border-gray-300 bg-white px-3 py-3 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
+            <input id="region" name="region" type="text" autocomplete="shipping address-level1" required class="block w-full border border-line bg-white px-3 py-3 text-sm text-ink focus:border-forest focus:outline-none focus:ring-2 focus:ring-forest focus:ring-offset-2">
           </div>
           <div>
             <label for="postal-code" class="mb-2 block text-sm font-medium">Código postal <span aria-hidden="true">*</span></label>
-            <input id="postal-code" name="postal-code" type="text" autocomplete="shipping postal-code" required class="block w-full border border-gray-300 bg-white px-3 py-3 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
+            <input id="postal-code" name="postal-code" type="text" autocomplete="shipping postal-code" required class="block w-full border border-line bg-white px-3 py-3 text-sm text-ink focus:border-forest focus:outline-none focus:ring-2 focus:ring-forest focus:ring-offset-2">
           </div>
           <div>
             <label for="country" class="mb-2 block text-sm font-medium">País <span aria-hidden="true">*</span></label>
-            <input id="country" name="country-name" type="text" autocomplete="shipping country-name" required class="block w-full border border-gray-300 bg-white px-3 py-3 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
+            <input id="country" name="country-name" type="text" autocomplete="shipping country-name" required class="block w-full border border-line bg-white px-3 py-3 text-sm text-ink focus:border-forest focus:outline-none focus:ring-2 focus:ring-forest focus:ring-offset-2">
           </div>
         </div>
       </fieldset>
 
-      <fieldset class="border-t border-gray-300 pt-6">
-        <legend class="px-0 font-serif text-xl font-medium">3. Pago con tarjeta</legend>
-        <p class="mb-6 mt-2 text-sm text-gray-600">Introduce los datos tal como aparecen en tu tarjeta.</p>
+      <fieldset class="border-t border-line pt-6">
+        <legend class="px-0 font-display text-xl font-semibold">3. Pago con tarjeta</legend>
+        <p class="mb-6 mt-2 text-sm text-muted">Introduce los datos tal como aparecen en tu tarjeta.</p>
         <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div class="sm:col-span-2">
             <label for="cc-name" class="mb-2 block text-sm font-medium">Titular de la tarjeta <span aria-hidden="true">*</span></label>
-            <input id="cc-name" name="cc-name" type="text" autocomplete="cc-name" required class="block w-full border border-gray-300 bg-white px-3 py-3 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
+            <input id="cc-name" name="cc-name" type="text" autocomplete="cc-name" required class="block w-full border border-line bg-white px-3 py-3 text-sm text-ink focus:border-forest focus:outline-none focus:ring-2 focus:ring-forest focus:ring-offset-2">
           </div>
           <div class="sm:col-span-2">
             <label for="cc-number" class="mb-2 block text-sm font-medium">Número de tarjeta <span aria-hidden="true">*</span></label>
-            <input id="cc-number" name="cc-number" type="text" inputmode="numeric" autocomplete="cc-number" required aria-describedby="cc-number-help" class="block w-full border border-gray-300 bg-white px-3 py-3 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
-            <p id="cc-number-help" class="mt-2 text-xs leading-5 text-gray-500">Escribe los dígitos que aparecen en el anverso de la tarjeta.</p>
+            <input id="cc-number" name="cc-number" type="text" inputmode="numeric" autocomplete="cc-number" required aria-describedby="cc-number-help" class="block w-full border border-line bg-white px-3 py-3 text-sm text-ink focus:border-forest focus:outline-none focus:ring-2 focus:ring-forest focus:ring-offset-2">
+            <p id="cc-number-help" class="mt-2 text-xs leading-5 text-muted">Escribe los dígitos que aparecen en el anverso de la tarjeta.</p>
           </div>
           <div>
             <label for="cc-exp" class="mb-2 block text-sm font-medium">Fecha de caducidad <span aria-hidden="true">*</span></label>
-            <input id="cc-exp" name="cc-exp" type="month" autocomplete="cc-exp" required class="block w-full border border-gray-300 bg-white px-3 py-3 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
+            <input id="cc-exp" name="cc-exp" type="month" autocomplete="cc-exp" required class="block w-full border border-line bg-white px-3 py-3 text-sm text-ink focus:border-forest focus:outline-none focus:ring-2 focus:ring-forest focus:ring-offset-2">
           </div>
           <div>
             <label for="cc-csc" class="mb-2 block text-sm font-medium">Código de seguridad <span aria-hidden="true">*</span></label>
-            <input id="cc-csc" name="cc-csc" type="text" inputmode="numeric" autocomplete="cc-csc" pattern="[0-9]{3,4}" maxlength="4" required aria-describedby="cc-csc-help" class="block w-full border border-gray-300 bg-white px-3 py-3 text-sm text-gray-900 focus:border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
-            <p id="cc-csc-help" class="mt-2 text-xs leading-5 text-gray-500">Código de 3 o 4 dígitos en el reverso o anverso de la tarjeta.</p>
+            <input id="cc-csc" name="cc-csc" type="text" inputmode="numeric" autocomplete="cc-csc" pattern="[0-9]{3,4}" maxlength="4" required aria-describedby="cc-csc-help" class="block w-full border border-line bg-white px-3 py-3 text-sm text-ink focus:border-forest focus:outline-none focus:ring-2 focus:ring-forest focus:ring-offset-2">
+            <p id="cc-csc-help" class="mt-2 text-xs leading-5 text-muted">Código de 3 o 4 dígitos en el reverso o anverso de la tarjeta.</p>
           </div>
         </div>
       </fieldset>
     </form>
+    </div>
   </main>
 
-  <footer class="mt-12 bg-gray-900 text-white">
-    <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-14">
-      <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-        <div>
-          <a href="index.html" class="font-serif text-xl font-semibold tracking-wide">MAISON LUMIÈRE</a>
-          <p class="mt-4 max-w-xs text-sm leading-6 text-gray-300">Una mirada atemporal al vestir cotidiano.</p>
+  <footer class="bg-ink text-paper mt-8">
+    <div class="max-w-[1440px] mx-auto px-6 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+        <div class="md:col-span-1">
+          <a href="index.html" class="font-display text-2xl font-bold tracking-tight">NORTE</a>
+          <p class="mt-4 text-sm text-gray-400">Ropa esencial para el día a día. Diseñada para resistir, creada para acompañarte.</p>
         </div>
         <div>
-          <h2 class="mb-4 text-xs font-semibold uppercase tracking-widest text-gray-300">Categorías</h2>
-          <ul class="space-y-3 text-sm text-gray-200">
-            <li><a href="catalogo.html" class="hover:text-white">Calzado</a></li>
-            <li><a href="catalogo.html" class="hover:text-white">Camisas</a></li>
-            <li><a href="catalogo.html" class="hover:text-white">Pantalones</a></li>
+          <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Categorías</h2>
+          <ul class="space-y-3 text-sm">
+            <li><a href="catalogo.html" class="hover:text-white transition-colors">Calzado</a></li>
+            <li><a href="catalogo.html" class="hover:text-white transition-colors">Camisas</a></li>
+            <li><a href="catalogo.html" class="hover:text-white transition-colors">Pantalones</a></li>
+            <li><a href="catalogo.html" class="hover:text-white transition-colors">Accesorios</a></li>
           </ul>
         </div>
         <div>
-          <h2 class="mb-4 text-xs font-semibold uppercase tracking-widest text-gray-300">Legal</h2>
-          <ul class="space-y-3 text-sm text-gray-200">
-            <li><a href="#" class="hover:text-white">Términos y condiciones</a></li>
-            <li><a href="#" class="hover:text-white">Política de privacidad</a></li>
+          <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Legal</h2>
+          <ul class="space-y-3 text-sm">
+            <li><a href="#" class="hover:text-white transition-colors">Términos y Condiciones</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Política de Privacidad</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Sobre la Marca</a></li>
           </ul>
         </div>
         <div>
-          <h2 class="mb-4 text-xs font-semibold uppercase tracking-widest text-gray-300">Contacto</h2>
-          <p class="text-sm text-gray-200">bonjour@maisonlumiere.com</p>
+          <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Contacto</h2>
+          <ul class="space-y-3 text-sm">
+            <li>hola@norte.com</li>
+            <li>+33 1 23 45 67 89</li>
+          </ul>
         </div>
       </div>
-      <p class="mt-10 border-t border-gray-700 pt-6 text-center text-xs text-gray-400">&copy; 2026 Maison Lumière. Todos los derechos reservados.</p>
+      <div class="mt-16 pt-8 border-t border-gray-800 text-sm text-gray-500 text-center">
+        &copy; 2026 NORTE. Todos los derechos reservados.
+      </div>
     </div>
   </footer>
 </body>
