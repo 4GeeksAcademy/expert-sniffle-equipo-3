@@ -6,15 +6,11 @@
     <meta name="description" content="Catálogo completo de NORTE. Ropa y calzado esencial diseñados para durar.">
     <title>Catálogo | NORTE</title>
 
-    <!-- Preconexión a Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Configuración personalizada de Tailwind -->
     <script>
         tailwind.config = {
             theme: {
@@ -36,7 +32,7 @@
         }
     </script>
 
-    <!-- Schema.org: Datos estructurados para SEO (Rúbrica) -->
+    <!-- Schema.org para SEO -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -62,11 +58,12 @@
 </head>
 <body class="bg-paper text-ink font-sans flex flex-col min-h-screen">
 
-    <!-- NAVBAR (Reutilizable) -->
+    <!-- NAVBAR -->
     <header class="bg-white border-b border-line sticky top-0 z-50">
         <div class="max-w-[1440px] mx-auto px-6 h-[78px] flex justify-between items-center">
             <a href="index.html" class="flex items-center gap-2 group" aria-label="Norte, inicio">
-                <img src="https://i.pinimg.com/736x/d4/46/74/d446745f86fd4e5a0615e644c9e0e90b.jpg" alt="Logo Norte" class="w-16 h-16 object-contain transition-transform group-hover:scale-105">
+                <!-- Se añade width y height explícito para SEO/Rendimiento -->
+                <img src="https://i.pinimg.com/736x/d4/46/74/d446745f86fd4e5a0615e644c9e0e90b.jpg" alt="Logo Norte" width="64" height="64" class="w-16 h-16 object-contain transition-transform group-hover:scale-105">
                 <span class="font-display text-xl font-bold tracking-tight">NORTE</span>
             </a>
             
@@ -78,7 +75,8 @@
 
             <div class="flex items-center gap-6 text-sm font-medium">
                 <a href="#" class="hidden sm:block hover:text-muted transition-colors">Mi Cuenta</a>
-                <a href="carrito.html" class="flex items-center hover:text-muted transition-colors" aria-label="Abrir carrito">
+                <!-- Corrección Accesibilidad: aria-label coincide con texto visible -->
+                <a href="carrito.html" class="flex items-center hover:text-muted transition-colors" aria-label="Bolsa con 0 artículos">
                     Bolsa 
                     <span id="bag-count" class="ml-2 bg-ink text-white w-6 h-6 flex items-center justify-center rounded-full text-xs">0</span>
                 </a>
@@ -114,7 +112,6 @@
                             <option value="calzado">Calzado</option>
                             <option value="accesorios">Accesorios</option>
                         </select>
-                        <!-- Flecha SVG personalizada -->
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-muted">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -134,7 +131,6 @@
                             <option value="l">L</option>
                             <option value="xl">XL</option>
                         </select>
-                        <!-- Flecha SVG personalizada -->
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-muted">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -145,16 +141,17 @@
             </form>
         </div>
 
-        <!-- REJILLA DE PRODUCTOS (4x5 = 20 Productos) -->
+        <!-- REJILLA DE PRODUCTOS -->
         <section aria-labelledby="products-heading">
             <h2 id="products-heading" class="sr-only">Listado de productos disponibles</h2>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-12 gap-x-6">
                 
-                <!-- 1 -->
+                <!-- 1. Para la primera imagen usamos eager loading y priority high (Mejora LCP) -->
                 <article class="group relative flex flex-col">
                     <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
-                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80" alt="Chaqueta Atlas verde oliva" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <!-- CLS Fix: Atributos width y height -->
+                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80" alt="Chaqueta Atlas verde oliva" fetchpriority="high" loading="eager" width="600" height="750" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                         <span class="absolute top-3 left-3 bg-paper px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider">Nueva temporada</span>
                     </div>
                     <p class="text-muted text-xs font-semibold uppercase mb-1">Abrigos</p>
@@ -165,10 +162,8 @@
                             </h3>
                             <p class="text-ink font-semibold">$189.00</p>
                         </div>
-                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                            </svg>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar Chaqueta Atlas al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                         </button>
                     </div>
                 </article>
@@ -176,7 +171,7 @@
                 <!-- 2 -->
                 <article class="group relative flex flex-col">
                     <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
-                        <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=600&q=80" alt="Camisa Oxford Blanca" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=600&q=80" alt="Camisa Oxford Blanca" loading="lazy" width="600" height="750" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <p class="text-muted text-xs font-semibold uppercase mb-1">Camisas</p>
                     <div class="flex justify-between items-end mt-auto">
@@ -186,10 +181,8 @@
                             </h3>
                             <p class="text-ink font-semibold">$65.00</p>
                         </div>
-                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                            </svg>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar Camisa Oxford Blanca al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                         </button>
                     </div>
                 </article>
@@ -197,7 +190,7 @@
                 <!-- 3 -->
                 <article class="group relative flex flex-col">
                     <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
-                        <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=600&q=80" alt="Pantalón Regular Chino" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=600&q=80" alt="Pantalón Regular Chino" loading="lazy" width="600" height="750" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <p class="text-muted text-xs font-semibold uppercase mb-1">Pantalones</p>
                     <div class="flex justify-between items-end mt-auto">
@@ -207,10 +200,8 @@
                             </h3>
                             <p class="text-ink font-semibold">$85.00</p>
                         </div>
-                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                            </svg>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar Pantalón Regular Chino al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                         </button>
                     </div>
                 </article>
@@ -218,7 +209,7 @@
                 <!-- 4 -->
                 <article class="group relative flex flex-col">
                     <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
-                        <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=600&q=80" alt="Zapatillas Senderismo Canvas" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=600&q=80" alt="Zapatillas Senderismo Canvas" loading="lazy" width="600" height="750" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <p class="text-muted text-xs font-semibold uppercase mb-1">Calzado</p>
                     <div class="flex justify-between items-end mt-auto">
@@ -228,10 +219,8 @@
                             </h3>
                             <p class="text-ink font-semibold">$110.00</p>
                         </div>
-                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                            </svg>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar Zapatillas Canvas Low al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                         </button>
                     </div>
                 </article>
@@ -239,7 +228,7 @@
                 <!-- 5 -->
                 <article class="group relative flex flex-col">
                     <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
-                        <img src="https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=600&q=80" alt="Sobrecamisa de Lana" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=600&q=80" alt="Sobrecamisa de Lana" loading="lazy" width="600" height="750" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <p class="text-muted text-xs font-semibold uppercase mb-1">Abrigos</p>
                     <div class="flex justify-between items-end mt-auto">
@@ -249,10 +238,8 @@
                             </h3>
                             <p class="text-ink font-semibold">$145.00</p>
                         </div>
-                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                            </svg>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar Sobrecamisa de Lana al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                         </button>
                     </div>
                 </article>
@@ -260,7 +247,7 @@
                 <!-- 6 -->
                 <article class="group relative flex flex-col">
                     <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
-                        <img src="https://img01.ztat.net/article/spp-media-p1/72809cf0db114bb08339239829343903/9324e7c3aa274b329582016b70589b12.jpg?imwidth=1800" alt="Camiseta Básica de Algodón" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://img01.ztat.net/article/spp-media-p1/72809cf0db114bb08339239829343903/9324e7c3aa274b329582016b70589b12.jpg?imwidth=1800" alt="Camiseta Básica de Algodón" loading="lazy" width="600" height="750" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <p class="text-muted text-xs font-semibold uppercase mb-1">Camisas</p>
                     <div class="flex justify-between items-end mt-auto">
@@ -270,10 +257,8 @@
                             </h3>
                             <p class="text-ink font-semibold">$40.00</p>
                         </div>
-                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                            </svg>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar Camiseta Heavyweight al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                         </button>
                     </div>
                 </article>
@@ -281,7 +266,7 @@
                 <!-- 7 -->
                 <article class="group relative flex flex-col">
                     <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
-                        <img src="https://images.unsplash.com/photo-1517445312882-bc9910d016b7?auto=format&fit=crop&w=600&q=80" alt="Gorra Urbana Canvas" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1517445312882-bc9910d016b7?auto=format&fit=crop&w=600&q=80" alt="Gorra Urbana Canvas" loading="lazy" width="600" height="750" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <p class="text-muted text-xs font-semibold uppercase mb-1">Accesorios</p>
                     <div class="flex justify-between items-end mt-auto">
@@ -291,10 +276,8 @@
                             </h3>
                             <p class="text-ink font-semibold">$35.00</p>
                         </div>
-                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                            </svg>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar Gorra Canvas Clásica al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                         </button>
                     </div>
                 </article>
@@ -302,7 +285,7 @@
                 <!-- 8 -->
                 <article class="group relative flex flex-col">
                     <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
-                        <img src="https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=600&q=80" alt="Botas de Piel Senderismo" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=600&q=80" alt="Botas de Piel Senderismo" loading="lazy" width="600" height="750" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <p class="text-muted text-xs font-semibold uppercase mb-1">Calzado</p>
                     <div class="flex justify-between items-end mt-auto">
@@ -312,10 +295,8 @@
                             </h3>
                             <p class="text-ink font-semibold">$210.00</p>
                         </div>
-                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                            </svg>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar Bota Montaña Robusta al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                         </button>
                     </div>
                 </article>
@@ -323,7 +304,7 @@
                 <!-- 9 -->
                 <article class="group relative flex flex-col">
                     <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
-                        <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80" alt="Sudadera Capucha Gris" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80" alt="Sudadera Capucha Gris" loading="lazy" width="600" height="750" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <p class="text-muted text-xs font-semibold uppercase mb-1">Abrigos</p>
                     <div class="flex justify-between items-end mt-auto">
@@ -333,10 +314,8 @@
                             </h3>
                             <p class="text-ink font-semibold">$95.00</p>
                         </div>
-                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                            </svg>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar Sudadera Hoodie Gris al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                         </button>
                     </div>
                 </article>
@@ -344,7 +323,8 @@
                 <!-- 10 -->
                 <article class="group relative flex flex-col">
                     <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
-                        <img src="https://images.wrangler.com/is/image/Wrangler/112375269-ALT3?$PDP24-XXLARGE$&fit=crop alt="Pantalón Denim Raw" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <!-- Corrección Accesibilidad: Etiqueta alt corregida -->
+                        <img src="https://images.wrangler.com/is/image/Wrangler/112375269-ALT3?$PDP24-XXLARGE$&fit=crop" alt="Pantalón Denim Raw Selvedge" loading="lazy" width="600" height="750" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <p class="text-muted text-xs font-semibold uppercase mb-1">Pantalones</p>
                     <div class="flex justify-between items-end mt-auto">
@@ -354,10 +334,8 @@
                             </h3>
                             <p class="text-ink font-semibold">$120.00</p>
                         </div>
-                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                            </svg>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar Vaquero Raw Selvedge al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                         </button>
                     </div>
                 </article>
@@ -365,7 +343,7 @@
                 <!-- 11 -->
                 <article class="group relative flex flex-col">
                     <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
-                        <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=600&q=80" alt="Camisa de Lino Crudo" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=600&q=80" alt="Camisa de Lino Crudo" loading="lazy" width="600" height="750" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <p class="text-muted text-xs font-semibold uppercase mb-1">Camisas</p>
                     <div class="flex justify-between items-end mt-auto">
@@ -375,10 +353,8 @@
                             </h3>
                             <p class="text-ink font-semibold">$75.00</p>
                         </div>
-                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                            </svg>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar Camisa de Lino Natural al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                         </button>
                     </div>
                 </article>
@@ -386,7 +362,7 @@
                 <!-- 12 -->
                 <article class="group relative flex flex-col">
                     <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
-                        <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80" alt="Mochila Técnica Urbana" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80" alt="Mochila Técnica Urbana" loading="lazy" width="600" height="750" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <p class="text-muted text-xs font-semibold uppercase mb-1">Accesorios</p>
                     <div class="flex justify-between items-end mt-auto">
@@ -396,10 +372,8 @@
                             </h3>
                             <p class="text-ink font-semibold">$130.00</p>
                         </div>
-                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                            </svg>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar Mochila Roll-top 24L al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                         </button>
                     </div>
                 </article>
@@ -407,7 +381,7 @@
                 <!-- 13 -->
                 <article class="group relative flex flex-col">
                     <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
-                        <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=600&q=80" alt="Cárdigan de Punto Grueso" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=600&q=80" alt="Cárdigan de Punto Grueso" loading="lazy" width="600" height="750" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <p class="text-muted text-xs font-semibold uppercase mb-1">Abrigos</p>
                     <div class="flex justify-between items-end mt-auto">
@@ -417,10 +391,8 @@
                             </h3>
                             <p class="text-ink font-semibold">$160.00</p>
                         </div>
-                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                            </svg>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar Cárdigan Punto Merino al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                         </button>
                     </div>
                 </article>
@@ -428,7 +400,7 @@
                 <!-- 14 -->
                 <article class="group relative flex flex-col">
                     <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
-                        <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80" alt="Blazer Casual Marino" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80" alt="Blazer Casual Marino" loading="lazy" width="600" height="750" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <p class="text-muted text-xs font-semibold uppercase mb-1">Abrigos</p>
                     <div class="flex justify-between items-end mt-auto">
@@ -438,10 +410,8 @@
                             </h3>
                             <p class="text-ink font-semibold">$230.00</p>
                         </div>
-                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                            </svg>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar Blazer Estructurado Azul al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                         </button>
                     </div>
                 </article>
@@ -449,7 +419,7 @@
                 <!-- 15 -->
                 <article class="group relative flex flex-col">
                     <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
-                        <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=600&q=80" alt="Pantalón Casual de Vestir" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=600&q=80" alt="Pantalón Casual de Vestir" loading="lazy" width="600" height="750" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <p class="text-muted text-xs font-semibold uppercase mb-1">Pantalones</p>
                     <div class="flex justify-between items-end mt-auto">
@@ -459,10 +429,8 @@
                             </h3>
                             <p class="text-ink font-semibold">$95.00</p>
                         </div>
-                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                            </svg>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar Pantalón Tapered Carbón al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                         </button>
                     </div>
                 </article>
@@ -470,7 +438,7 @@
                 <!-- 16 -->
                 <article class="group relative flex flex-col">
                     <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
-                        <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=600&q=80" alt="Zapatillas Running Retro" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=600&q=80" alt="Zapatillas Running Retro" loading="lazy" width="600" height="750" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <p class="text-muted text-xs font-semibold uppercase mb-1">Calzado</p>
                     <div class="flex justify-between items-end mt-auto">
@@ -480,10 +448,8 @@
                             </h3>
                             <p class="text-ink font-semibold">$115.00</p>
                         </div>
-                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                            </svg>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar Sneakers Retro Trainer al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                         </button>
                     </div>
                 </article>
@@ -491,7 +457,7 @@
                 <!-- 17 -->
                 <article class="group relative flex flex-col">
                     <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
-                        <img src="https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=600&q=80" alt="Cartera de Piel Compacta" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=600&q=80" alt="Cartera de Piel Compacta" loading="lazy" width="600" height="750" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <p class="text-muted text-xs font-semibold uppercase mb-1">Accesorios</p>
                     <div class="flex justify-between items-end mt-auto">
@@ -501,10 +467,8 @@
                             </h3>
                             <p class="text-ink font-semibold">$45.00</p>
                         </div>
-                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                            </svg>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar Billetera Slim de Cuero al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                         </button>
                     </div>
                 </article>
@@ -512,7 +476,7 @@
                 <!-- 18 -->
                 <article class="group relative flex flex-col">
                     <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
-                        <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=600&q=80" alt="Camisa Cuadros Franela" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=600&q=80" alt="Camisa Cuadros Franela" loading="lazy" width="600" height="750" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <p class="text-muted text-xs font-semibold uppercase mb-1">Camisas</p>
                     <div class="flex justify-between items-end mt-auto">
@@ -522,10 +486,8 @@
                             </h3>
                             <p class="text-ink font-semibold">$70.00</p>
                         </div>
-                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                            </svg>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar Camisa Franela Escocesa al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                         </button>
                     </div>
                 </article>
@@ -533,7 +495,7 @@
                 <!-- 19 -->
                 <article class="group relative flex flex-col">
                     <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
-                        <img src="https://images.unsplash.com/photo-1582552938357-32b906df40cb?auto=format&fit=crop&w=600&q=80" alt="Shorts Cargo de Algodón" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1582552938357-32b906df40cb?auto=format&fit=crop&w=600&q=80" alt="Shorts Cargo de Algodón" loading="lazy" width="600" height="750" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <p class="text-muted text-xs font-semibold uppercase mb-1">Pantalones</p>
                     <div class="flex justify-between items-end mt-auto">
@@ -543,10 +505,8 @@
                             </h3>
                             <p class="text-ink font-semibold">$55.00</p>
                         </div>
-                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                            </svg>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar Bermuda Cargo Ripstop al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                         </button>
                     </div>
                 </article>
@@ -554,7 +514,7 @@
                 <!-- 20 -->
                 <article class="group relative flex flex-col">
                     <div class="relative bg-line/40 aspect-[4/5] overflow-hidden mb-4 rounded-sm">
-                        <img src="https://images.unsplash.com/photo-1608256246200-53e635b5b65f?auto=format&fit=crop&w=600&q=80" alt="Gorro de Lana Invierno" loading="lazy" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1608256246200-53e635b5b65f?auto=format&fit=crop&w=600&q=80" alt="Gorro de Lana Invierno" loading="lazy" width="600" height="750" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <p class="text-muted text-xs font-semibold uppercase mb-1">Accesorios</p>
                     <div class="flex justify-between items-end mt-auto">
@@ -564,10 +524,8 @@
                             </h3>
                             <p class="text-ink font-semibold">$30.00</p>
                         </div>
-                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar al carrito">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                            </svg>
+                        <button type="button" class="add-to-cart-btn relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white border border-line hover:bg-forest hover:text-white transition-colors text-ink shadow-sm" aria-label="Agregar Beanie Lana Canalé al carrito">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                         </button>
                     </div>
                 </article>
@@ -576,7 +534,7 @@
         </section>
     </main>
 
-    <!-- FOOTER (Reutilizable) -->
+    <!-- FOOTER -->
     <footer class="bg-ink text-paper mt-16">
         <div class="max-w-[1440px] mx-auto px-6 py-16">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
@@ -609,12 +567,14 @@
                     </ul>
                 </div>
             </div>
-            <div class="mt-16 pt-8 border-t border-gray-800 text-sm text-gray-500 text-center">
+            <!-- Corrección Accesibilidad de Color: text-gray-400 -->
+            <div class="mt-16 pt-8 border-t border-gray-800 text-sm text-gray-400 text-center">
                 &copy; 2026 NORTE. Todos los derechos reservados.
             </div>
         </div>
     </footer>
-    <!-- Script para el carrito -->
+
+    <!-- Script del Carrito -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const bagCount = document.getElementById('bag-count');
@@ -622,20 +582,16 @@
 
             addButtons.forEach(button => {
                 button.addEventListener('click', (e) => {
-                    // Evita que el clic en el botón active el enlace del producto
                     e.preventDefault(); 
                     
-                    // Suma 1 al carrito
                     let currentCount = parseInt(bagCount.textContent);
                     bagCount.textContent = currentCount + 1;
                     
-                    // Feedback visual: Cambia a un icono de "check" y color verde temporalmente
                     const originalSVG = button.innerHTML;
                     button.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
                     button.classList.add('bg-forest', 'text-white');
                     button.classList.remove('bg-white', 'text-ink');
                     
-                    // Restaura el botón después de 1 segundo
                     setTimeout(() => {
                         button.innerHTML = originalSVG;
                         button.classList.remove('bg-forest', 'text-white');
@@ -645,8 +601,5 @@
             });
         });
     </script>
-</body>
-</html>
-
 </body>
 </html>
