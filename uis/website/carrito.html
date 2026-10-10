@@ -5,36 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Revisa tu selección en NORTE antes de finalizar la compra.">
   <title>Carrito | NORTE</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"DM Sans"', 'sans-serif'],
-            display: ['"Manrope"', 'sans-serif'],
-          },
-          colors: {
-            ink: '#17201b',
-            muted: '#677068',
-            paper: '#f4f2ec',
-            line: '#d8d8d0',
-            accent: '#c64f32',
-            forest: '#344b3d',
-          }
-        }
-      }
-    }
-  </script>
+  <link rel="preload" href="assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="tailwind.min.css">
 </head>
 <body class="bg-paper text-ink font-sans flex flex-col min-h-screen overflow-x-hidden">
   <header class="bg-white border-b border-line sticky top-0 z-50">
     <div class="max-w-[1440px] mx-auto px-6 h-[78px] flex justify-between items-center">
       <a href="index.html" class="flex items-center gap-2 group" aria-label="Norte, inicio">
-        <img src="https://i.pinimg.com/736x/d4/46/74/d446745f86fd4e5a0615e644c9e0e90b.jpg" alt="Logo Norte" class="w-16 h-16 object-contain transition-transform group-hover:scale-105">
+        <img src="https://i.pinimg.com/236x/d4/46/74/d446745f86fd4e5a0615e644c9e0e90b.jpg" alt="Logo Norte" class="w-16 h-16 object-contain transition-transform group-hover:scale-105">
         <span class="font-display text-xl font-bold tracking-tight">NORTE</span>
       </a>
 
