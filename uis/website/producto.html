@@ -11,13 +11,44 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="#" aria-label="Norte, inicio">NORTE</a>
-    <span class="collection">Colección esencial / 2026</span>
-    <a class="bag-button" href="carrito.html" aria-label="Abrir carrito">
-      Bolsa <span id="bag-count" aria-live="polite">0</span>
-    </a>
-  </header>
+ 
+<!-- NAVBAR NORTE -->
+<header class="bg-white border-b border-line sticky top-0 z-50">
+    <div class="max-w-[1440px] mx-auto px-6 h-[78px] flex justify-between items-center">
+
+        <a href="index.html" class="flex items-center gap-2 group" aria-label="Norte, inicio">
+            <img
+                src="https://i.pinimg.com/736x/d4/46/74/d446745f86fd4e5a0615e644c9e0e90b.jpg"
+                alt="Logo Norte"
+                width="64"
+                height="64"
+                class="w-16 h-16 object-contain transition-transform group-hover:scale-105"
+            >
+            <span class="font-display text-xl font-bold tracking-tight">NORTE</span>
+        </a>
+
+        <div class="hidden md:block flex-1 max-w-md mx-8">
+            <label for="search" class="sr-only">Buscar productos</label>
+            <input
+                id="search"
+                type="search"
+                placeholder="Buscar en la colección..."
+                class="w-full border border-line bg-paper px-4 py-2 text-sm focus:outline-none focus:border-forest transition-colors"
+            >
+        </div>
+
+        <div class="flex items-center gap-6 text-sm font-medium">
+            <a href="catalogo.html" class="hidden sm:block hover:text-muted transition-colors">Catálogo</a>
+            <a href="#" class="hidden sm:block hover:text-muted transition-colors">Mi Cuenta</a>
+            <a href="carrito.html" class="flex items-center hover:text-muted transition-colors" aria-label="Bolsa con 0 artículos">
+                Bolsa
+                <span id="bag-count" class="ml-2 bg-ink text-white w-6 h-6 flex items-center justify-center rounded-full text-xs">0</span>
+            </a>
+        </div>
+
+    </div>
+</header>
+
 
   <main>
     <nav class="breadcrumb" aria-label="Ruta de navegación">
