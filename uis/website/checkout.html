@@ -68,7 +68,7 @@
       <p class="mt-3 text-sm text-muted"><span aria-hidden="true">*</span> Campos obligatorios</p>
     </div>
 
-    <form class="space-y-10">
+    <form id="checkout-form" class="space-y-10" novalidate>
       <fieldset class="border-t border-line pt-6">
         <legend class="px-0 font-display text-xl font-semibold">1. Datos personales</legend>
         <p class="mb-6 mt-2 text-sm text-muted">Indica los datos de contacto de la persona que realiza la compra.</p>
@@ -150,6 +150,12 @@
           </div>
         </div>
       </fieldset>
+
+      <div class="flex justify-end pt-2">
+        <button type="submit" class="bg-ink text-white px-6 py-3 text-sm font-semibold tracking-[0.08em] uppercase hover:bg-forest transition-colors focus:outline-none focus:ring-2 focus:ring-forest focus:ring-offset-2">
+          Confirmar pedido
+        </button>
+      </div>
     </form>
     </div>
   </main>
@@ -191,5 +197,154 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('checkout-form');
+      const fieldGuides = {
+        'given-name': 'Escribe tu nombre, por ejemplo: María.',
+        'family-name': 'Escribe tus apellidos, por ejemplo: López García.',
+        'email': 'Escribe un correo válido, por ejemplo: maria@correo.com.',
+        'tel': 'Incluye el prefijo y el número de teléfono, por ejemplo: +34 612 345 678.',
+        'address-line1': 'Escribe la calle y el número, por ejemplo: Calle Mayor 12.',
+        'address-line2': 'Puedes añadir piso, portal o puerta si hace falta.',
+        'city': 'Escribe la ciudad, por ejemplo: Madrid.',
+        'region': 'Escribe la provincia o comunidad, por ejemplo: Valencia.',
+        'postal-code': 'Escribe el código postal, por ejemplo: 28001.',
+        'country': 'Escribe el país, por ejemplo: España.',
+        'cc-name': 'Escribe el nombre que aparece en la tarjeta.',
+        'cc-number': 'Escribe los 16 dígitos de la tarjeta sin espacios.',
+        'cc-exp': 'Selecciona la fecha de vencimiento de tu tarjeta.',
+        'cc-csc': 'Escribe los 3 o 4 dígitos de seguridad de la tarjeta.'
+      };
+
+      const getFieldRules = (input) => {
+        const id = input.id;
+        const value = input.value.trim();
+
+        if (!value) {
+          return { valid: false, message: 'Este campo es obligatorio.' };
+        }
+
+        const rules = {
+          'given-name': () => /^[A-Za-zÀ-ÿ\s'-]{2,}$/.test(value),
+          'family-name': () => /^[A-Za-zÀ-ÿ\s'-]{2,}$/.test(value),
+          'email': () => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+          'tel': () => /^\+?[0-9\s]{8,15}$/.test(value),
+          'address-line1': () => value.length >= 5,
+          'city': () => /^[A-Za-zÀ-ÿ\s'-]{2,}$/.test(value),
+          'region': () => /^[A-Za-zÀ-ÿ\s'-]{2,}$/.test(value),
+          'postal-code': () => /^[A-Za-z0-9\s-]{4,10}$/.test(value),
+          'country': () => /^[A-Za-zÀ-ÿ\s'-]{2,}$/.test(value),
+          'cc-name': () => /^[A-Za-zÀ-ÿ\s'-]{2,}$/.test(value),
+          'cc-number': () => value.replace(/\s+/g, '').length >= 13 && value.replace(/\s+/g, '').length <= 19 && /^\d+$/.test(value.replace(/\s+/g, '')),
+          'cc-exp': () => {
+            if (!input.value) return false;
+            const now = new Date();
+            const selected = new Date(`${input.value}-01T00:00:00`);
+            return selected >= new Date(now.getFullYear(), now.getMonth(), 1);
+          },
+          'cc-csc': () => /^\d{3,4}$/.test(value)
+        };
+
+        const check = rules[id];
+
+        if (!check) {
+          return { valid: true, message: fieldGuides[id] || 'Perfecto.' };
+        }
+
+        const isValid = check();
+
+        if (!isValid) {
+          const customMessages = {
+            'given-name': 'Escribe tu nombre sin números ni caracteres extraños.',
+            'family-name': 'Escribe tus apellidos correctamente.',
+            'email': 'Introduce un correo con formato válido: nombre@dominio.com.',
+            'tel': 'El teléfono debe tener entre 8 y 15 dígitos y puede incluir prefijo.',
+            'address-line1': 'La dirección debe tener al menos 5 caracteres.',
+            'city': 'Escribe el nombre de la ciudad correctamente.',
+            'region': 'Escribe la provincia o región correctamente.',
+            'postal-code': 'El código postal debe tener 4 a 10 caracteres alfanuméricos.',
+            'country': 'Escribe el nombre del país correctamente.',
+            'cc-name': 'Escribe el nombre del titular tal como aparece en la tarjeta.',
+            'cc-number': 'El número de tarjeta debe contener entre 13 y 19 dígitos.',
+            'cc-exp': 'Selecciona una fecha de vencimiento válida.',
+            'cc-csc': 'El código de seguridad debe tener 3 o 4 dígitos.'
+          };
+
+          return { valid: false, message: customMessages[id] || 'Introduce un valor válido.' };
+        }
+
+        return { valid: true, message: fieldGuides[id] || 'Perfecto.' };
+      };
+
+      const setFieldState = (input, valid, message) => {
+        const feedback = input.parentElement.querySelector('.field-message');
+
+        if (!feedback) return;
+
+        feedback.textContent = message;
+        feedback.classList.remove('text-muted', 'text-red-600', 'text-emerald-600');
+        feedback.classList.add(valid ? 'text-emerald-600' : 'text-red-600');
+        input.classList.remove('border-line', 'border-red-400', 'border-emerald-400');
+        input.classList.add(valid ? 'border-emerald-400' : 'border-red-400');
+        input.setAttribute('aria-invalid', String(!valid));
+      };
+
+      const validateField = (input) => {
+        const check = getFieldRules(input);
+        setFieldState(input, check.valid, check.message);
+        return check.valid;
+      };
+
+      form.querySelectorAll('input[required]').forEach((input) => {
+        const guide = fieldGuides[input.id] || 'Completa este campo con la información correcta.';
+        const message = document.createElement('p');
+        message.className = 'field-message mt-2 text-xs leading-5 text-muted';
+        message.textContent = guide;
+        message.setAttribute('aria-live', 'polite');
+        input.insertAdjacentElement('afterend', message);
+
+        input.classList.add('border', 'border-line', 'bg-white', 'px-3', 'py-3', 'text-sm', 'text-ink', 'focus:border-forest', 'focus:outline-none', 'focus:ring-2', 'focus:ring-forest', 'focus:ring-offset-2');
+
+        input.addEventListener('blur', () => validateField(input));
+        input.addEventListener('input', () => {
+          if (input.dataset.touched === 'true') {
+            validateField(input);
+          }
+        });
+        input.addEventListener('focus', () => {
+          input.dataset.touched = 'true';
+          const guideMessage = fieldGuides[input.id] || 'Completa este campo con la información correcta.';
+          setFieldState(input, true, guideMessage);
+        });
+      });
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        let isValid = true;
+        form.querySelectorAll('input[required]').forEach((input) => {
+          const fieldIsValid = validateField(input);
+          if (!fieldIsValid) isValid = false;
+        });
+
+        if (isValid) {
+          const button = form.querySelector('button[type="submit"]');
+          const originalText = button.textContent;
+          button.textContent = 'Pedido validado';
+          button.disabled = true;
+
+          setTimeout(() => {
+            button.textContent = originalText;
+            button.disabled = false;
+          }, 1800);
+        } else {
+          const firstInvalid = form.querySelector('input[required][aria-invalid="true"]');
+          if (firstInvalid) firstInvalid.focus();
+        }
+      });
+    });
+  </script>
 </body>
 </html>
